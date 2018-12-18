@@ -2,7 +2,7 @@ import json
 import requests
 import os
 import time
-import pandas
+import pandas as pd
 from api_key import *
 
 def scrape_news():
@@ -18,9 +18,9 @@ def scrape_news():
 	return news_dict
 
 def parse_news(news_dict):
+	cols = ['source_name','source_id','title','description','url','publishedAt', 'content', 'category']
+	df = pd.DataFrame(columns=cols)
 	for category, news in news_dict.items():
-		# print("category: ", category)
-		# print("news: ", news)
 		source_name = news[0]['source']['name']
 		source_id = news[0]['source']['id']
 		title = news[0]['title']
@@ -30,11 +30,9 @@ def parse_news(news_dict):
 		content = news[0]['content']
 		categ = category
 
-		print("------------------")
-		print("Category: ", categ)
-		print("Published date: ", publishedAt)
-		print("Source: ", source_name)
-		print("Title: ", title)
-		print("URL: ", url)
-		print("Content: ", content)
-		print("------------------")
+		vals = [source_name, source_id, title, description, url, publishedAt, content, categ]
+		df = df.append(pd.Series(vals, index=cols), ignore_index=True)
+
+	df.to_csv(os.path.join('/Users/justin/desktop/personal/market-bets','news1.csv'), index = False)
+
+	return df
