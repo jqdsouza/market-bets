@@ -38,7 +38,3 @@ def parse_news(news_dict):
 		print("URL: ", url)
 		print("Content: ", content)
 		print("------------------")
-
-if __name__ == "__main__":
-	news = scrape_news()
-	parsed_news = parse_news(news)
