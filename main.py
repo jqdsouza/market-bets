@@ -11,7 +11,7 @@ if __name__ == "__main__":
 	news = scrape_news()
 	df = parse_news(news)
 	create_table()
-	df.to_sql('news_test', con, if_exists='append', index=False)
+	df.to_sql(name = 'news_test', con = con, if_exists='append', index=False)
 	con.commit()
 	cur.close()
 	con.close()
