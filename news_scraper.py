@@ -29,10 +29,10 @@ def parse_news(news_dict):
 		publishedAt = news[0]['publishedAt']
 		content = news[0]['content']
 		categ = category
-
+		curr_time = time.time()
 		vals = [source_name, source_id, title, description, url, publishedAt, content, categ]
 		df = df.append(pd.Series(vals, index=cols), ignore_index=True)
 
-	df.to_csv(os.path.join('/Users/justin/desktop/personal/market-bets','news1.csv'), index = False)
+	df.to_csv(os.path.join('/Users/justin/desktop/personal/market-bets/output','news_{0}.csv'.format(curr_time)), index = False)
 
 	return df
