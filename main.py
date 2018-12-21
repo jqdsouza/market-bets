@@ -1,7 +1,7 @@
 #!/anaconda3/bin/python3
 
 from news_scraper import *
-from statistical_classifier import *
+#from statistical_classifier import *
 # from api import *
 from db import *
 import datetime
